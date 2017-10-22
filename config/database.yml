@@ -22,4 +22,10 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+#  database: db/production.sqlite3
+  adapter: mysql2
+  database: semidb
+  host: portal.cs.kyoto-wu.ac.jp
+  username: semiuser
+  password: D;tLVNDuMPx8ujkGbfAtfDhh
+  encoding: utf8

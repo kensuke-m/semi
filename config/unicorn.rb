@@ -22,6 +22,7 @@ end
 
 before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = APP_PATH + "/Gemfile"
+  Dotenv.overload
 end
 
 before_fork do |server, worker|
