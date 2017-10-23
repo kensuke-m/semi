@@ -1,10 +1,6 @@
-require "dotenv"
-
 APP_PATH   = "#{File.dirname(__FILE__)}/.." unless defined?(APP_PATH)
 RAILS_ROOT = "#{File.dirname(__FILE__)}/.." unless defined?(RAILS_ROOT)
 RAILS_ENV  = ENV['RAILS_ENV'] || 'development'
-
-Dotenv.load("#{RAILS_ROOT}/.env")
 
 worker_processes 3
 
@@ -27,6 +23,7 @@ end
 before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = APP_PATH + "/Gemfile"
   Dotenv.overload
+  Dotenv.load("#{RAILS_ROOT}/.env")
 end
 
 before_fork do |server, worker|
