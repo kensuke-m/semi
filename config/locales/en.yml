@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  show: Show
+  edit: Edit
+  destroy: Destroy
+  new: New
+  sure: Are you sure?
+  back: Back
