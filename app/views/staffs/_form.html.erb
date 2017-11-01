@@ -1,0 +1,37 @@
+<%= form_for(@staff) do |f| %>
+  <% if @staff.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+
+      <ul>
+      <% @staff.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :username %><br>
+    <%= f.text_field :username, class: "form-control", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :lastname %><br>
+    <%= f.text_field :lastname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :firstname %><br>
+    <%= f.text_field :firstname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :kana %><br>
+    <%= f.text_field :kana, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :course_id %><br>
+    <%= f.collection_select :course_id, Course.all, :id, :name, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-default" %>
+  </div>
+<% end %>

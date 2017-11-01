@@ -1,0 +1,35 @@
+<% if notice %>
+  <div class="alert alert-info" role="alert">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<div class="well">
+  <p>
+    <strong>Username:</strong>
+    <%= @staff.username %>
+  </p>
+
+  <p>
+    <strong>Lastname:</strong>
+    <%= @staff.lastname %>
+  </p>
+
+  <p>
+    <strong>Firstname:</strong>
+    <%= @staff.firstname %>
+  </p>
+
+  <p>
+    <strong>Kana:</strong>
+    <%= @staff.kana %>
+  </p>
+
+  <p>
+    <strong>Course:</strong>
+    <%= @staff.course.name %>
+  </p>
+</div>
+
+<%= link_to t(:edit), edit_staff_path(@staff) %> |
+<%= link_to t(:back), staffs_path %>

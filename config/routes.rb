@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :staffs
   resources :courses
   resources :subjects
   get 'top/index'
