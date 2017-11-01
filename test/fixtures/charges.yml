@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 
+  subject_id: 
+  capacity: 1
+
+two:
+  staff_id: 
+  subject_id: 
+  capacity: 1

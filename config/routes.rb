@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :charges
   resources :staffs
   resources :courses
   resources :subjects

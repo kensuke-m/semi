@@ -209,6 +209,7 @@ ja:
       subject: 科目
       course: 専攻
       staff: 教員
+      charge: 担当
     attributes:
       subject:
         name: 科目名
@@ -220,6 +221,10 @@ ja:
         firstname: 名
         kana: ふりがな
         course_id: 専攻
+      charge:
+        staff_id: 教員
+        subject_id: 科目
+        capacity: 定員
 
   new: 新規作成
   show: 詳細

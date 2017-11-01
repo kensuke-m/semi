@@ -1,0 +1,29 @@
+<%= form_for(@charge) do |f| %>
+  <% if @charge.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h2><%= pluralize(@charge.errors.count, "error") %> prohibited this charge from being saved:</h2>
+
+      <ul>
+      <% @charge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :staff_id %><br>
+    <%= f.collection_select :staff_id, Staff.order(:kana), :id, :lastname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :subject_id %><br>
+    <%= f.collection_select :subject_id, Subject.all, :id, :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :capacity %><br>
+    <%= f.number_field :capacity, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-default" %>
+  </div>
+<% end %>
