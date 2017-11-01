@@ -1,0 +1,13 @@
+<% if notice %>
+  <div class="alert alert-info" role="alert">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<div class="well">
+  <strong>Name:</strong>
+  <%= @course.name %>
+</div>
+
+<%= link_to t(:edit), edit_course_path(@course) %> |
+<%= link_to t(:back), courses_path %>

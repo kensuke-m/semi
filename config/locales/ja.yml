@@ -207,9 +207,12 @@ ja:
   activerecord:
     models:
       subject: 科目
+      course: 専攻
     attributes:
       subject:
         name: 科目名
+      course:
+        name: 専攻名
 
   new: 新規作成
   show: 詳細
