@@ -26,6 +26,17 @@ class ChargesController < ApplicationController
   def create
     @charge = Charge.new(charge_params)
 
+    if not Recruitment.where(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]).exists?
+      recruitment = Recruitment.new(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]);
+      if !recruitment.save
+        errors.add(:base, 'Recruitment was not created')
+        respond_to do |format|
+          format.html { render :new }
+          format.json { render json: @charge.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     respond_to do |format|
       if @charge.save
         format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
@@ -54,6 +65,10 @@ class ChargesController < ApplicationController
   # DELETE /charges/1
   # DELETE /charges/1.json
   def destroy
+    if Recruitment.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id).exists?
+      recruitment = Recruitment.find(staff_id: @charge.staff_id, subject_id: @charge.subject_id);
+      recruitment.destroy
+    end
     @charge.destroy
     respond_to do |format|
       format.html { redirect_to charges_url, notice: 'Charge was successfully destroyed.' }
