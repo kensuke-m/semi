@@ -6,7 +6,7 @@ class Syllabus < ActiveRecord::Base
   belongs_to :subject
 
   def self.import(file, id)
-    spreadsheet = open_spreadsheet(file)
+    spreadsheet = Roo::Spreadsheet.open(file)
     header = spreadsheet.column(1)
     column = Hash[[header, spreadsheet.column(2)].transpose]
     syllabus = find(id)

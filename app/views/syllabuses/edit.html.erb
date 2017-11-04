@@ -3,9 +3,10 @@
 </div>
 
 <p>
+  csv形式またはods形式，xlsx形式のファイルをアップロードできます．
+  テンプレートはそれぞれ<a href="/syllabus-template.csv" class="link">syllabus-template.csv</a>，<a href="/syllabus-template.ods" class="link">syllabus-template.ods</a>，<a href="/syllabus-template.xlsx" class="link">syllabus-template.xlsx</a>にあります．
   <div class="form-inline">
     <div class="form-group">
-      <label>XLS, XLSX or CSV:</label>
       <%= form_tag import_syllabuses_path, multipart: true do %>
         <%= file_field_tag :file, class: "form-control"  %>
         <%= hidden_field_tag :id, @syllabus.id %>
