@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :syllabuses
   resources :recruitments
   resources :charges
@@ -26,6 +27,15 @@ Rails.application.routes.draw do
   resources :syllabuses do
     collection { post :import }
   end
+
+  controller :sessions do
+    get 'signin' => :new
+    post 'signin' => :create
+    delete 'signout' => :destroy
+  end
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

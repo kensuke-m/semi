@@ -1,0 +1,20 @@
+<% if notice %>
+  <div class="alert alert-info" role="alert">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<div class="well">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Password digest:</strong>
+    <%= @user.password_digest %>
+  </p>
+</div>
+
+<%= link_to t(:edit), edit_user_path(@user) %> |
+<%= link_to t(:back), users_path %>

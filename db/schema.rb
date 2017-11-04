@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104004556) do
+ActiveRecord::Schema.define(version: 20171104135125) do
 
   create_table "charges", force: :cascade do |t|
     t.integer  "staff_id"
@@ -76,5 +76,12 @@ ActiveRecord::Schema.define(version: 20171104004556) do
 
   add_index "syllabuses", ["staff_id"], name: "index_syllabuses_on_staff_id"
   add_index "syllabuses", ["subject_id"], name: "index_syllabuses_on_subject_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

@@ -211,6 +211,7 @@ ja:
       charge: 担当
       recruitment: 募集
       syllabus: シラバス
+      user: ユーザ
     attributes:
       subject:
         name: 科目名
@@ -241,6 +242,9 @@ ja:
         referencebook: 参考書
         selectionmethod: 選抜方法
         remarks: 備考
+      user:
+        name: ユーザ名
+        password_digest: パスワード
 
   new: 新規作成
   show: 詳細
@@ -249,3 +253,6 @@ ja:
   sure: 本当にいいですか？
   back: 戻る
   import: 読み込み
+  signout: サインアウトしました
+  upmismatch: ユーザ名とパスワードの組み合わせが正しくありません
+  welcome: ようこそ
