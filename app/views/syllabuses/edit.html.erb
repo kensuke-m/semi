@@ -2,6 +2,19 @@
   <h1>シラバスの編集</h1>
 </div>
 
+<p>
+  <div class="form-inline">
+    <div class="form-group">
+      <label>XLS, XLSX or CSV:</label>
+      <%= form_tag import_syllabuses_path, multipart: true do %>
+        <%= file_field_tag :file, class: "form-control"  %>
+        <%= hidden_field_tag :id, @syllabus.id %>
+        <%= submit_tag t(:import), class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+</p>
+
 <%= render 'form' %>
 
 <p>

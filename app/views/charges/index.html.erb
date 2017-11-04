@@ -15,6 +15,17 @@
 </p>
 <p>
   <%= link_to t(:new), new_charge_path, class: "link" %>
+<!--
+  <div class="form-inline">
+    <div class="form-group">
+      <label>XLS, XLSX or CSV:</label>
+      <%= form_tag import_charges_path, multipart: true do %>
+        <%= file_field_tag :file, class: "form-control"  %>
+        <%= submit_tag t(:import), class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+-->
 </p>
 
 <div class="table-responsive">

@@ -26,26 +26,16 @@ class ChargesController < ApplicationController
   def create
     @charge = Charge.new(charge_params)
 
+    # Create the corresponding records in recruitments when new charge is created.
     if not Recruitment.where(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]).exists?
       recruitment = Recruitment.new(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]);
-      if !recruitment.save
-        errors.add(:base, 'Recruitment was not created')
-        respond_to do |format|
-          format.html { render :new }
-          format.json { render json: @charge.errors, status: :unprocessable_entity }
-        end
-      end
+      recruitment.save
     end
 
+    # Create the corresponding records in syllabuses when new charge is created.
     if not Syllabus.where(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]).exists?
       syllabus = Syllabus.new(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]);
-      if !syllabus.save
-        errors.add(:base, 'Syllabus was not created')
-        respond_to do |format|
-          format.html { render :new }
-          format.json { render json: @charge.errors, status: :unprocessable_entity }
-        end
-      end
+      syllabus.save
     end
 
     respond_to do |format|
@@ -77,13 +67,11 @@ class ChargesController < ApplicationController
   # DELETE /charges/1.json
   def destroy
     if Recruitment.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id).exists?
-      recruitment = Recruitment.find(staff_id: @charge.staff_id, subject_id: @charge.subject_id);
-      recruitment.destroy
+      Recruitment.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id)[0].destroy
     end
 
     if Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id).exists?
-      syllabus = Syllabus.find(staff_id: @charge.staff_id, subject_id: @charge.subject_id);
-      syllabus.destroy
+      Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id)[0].destroy
     end
 
     @charge.destroy
@@ -91,6 +79,11 @@ class ChargesController < ApplicationController
       format.html { redirect_to charges_url, notice: 'Charge was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def import
+      Charge.import(params[:file])
+      redirect_to charges_url, notice: "Charges imported."
   end
 
   private

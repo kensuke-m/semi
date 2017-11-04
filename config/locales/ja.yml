@@ -1,4 +1,3 @@
----
 ja:
   activerecord:
     errors:
@@ -249,3 +248,4 @@ ja:
   destroy: 削除
   sure: 本当にいいですか？
   back: 戻る
+  import: 読み込み

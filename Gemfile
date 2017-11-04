@@ -41,6 +41,10 @@ end
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'rails-i18n'
+gem 'iconv'
+gem 'roo', '~> 2.7.1'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
