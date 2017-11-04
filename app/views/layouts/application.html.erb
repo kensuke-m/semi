@@ -23,33 +23,37 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/?ref=nav-home">Home</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">テーブル <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/charges">担当</a></li>
-              <li><a href="/recruitments">募集</a></li>
-              <li><a href="/syllabuses">シラバス</a></a></li>
-              <li><a href="/subjects">科目</a></a></li>
-              <li><a href="/staffs">教員</a></li>
-              <li><a href="/courses">専攻</a></li>
-              <li><a href="/users">ユーザ</a></li>
-              <li role="separator" class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
+          <% if User::admin?(session[:user_name]) %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">テーブル <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/charges">担当</a></li>
+                <li><a href="/recruitments">募集</a></li>
+                <li><a href="/syllabuses">シラバス</a></a></li>
+                <li><a href="/subjects">科目</a></a></li>
+                <li><a href="/staffs">教員</a></li>
+                <li><a href="/courses">専攻</a></li>
+                <li><a href="/users">ユーザ</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          <% end %>
+          <% if User::staff?(session[:user_name]) %>
+            <li><a href="/syllabuses">シラバス</a></li>
+          <% end %>
         </ul>
         <div class="nav navbar-nav navbar-right">
-        <% if session[:user_id] %>
+        <% if session[:user_name] %>
           <div class="navbar-header"><span class="navbar-brand"><%= session[:user_name] %></span></div>
           <div class="navbar-form navbar-right">
             <%= button_to "Sign out", signout_path, method: :delete, class: "btn btn-danger" %>
           </div>
         <% else %>
           <div class="navbar-form navbar-right">
-            <%= button_to "Sign in", signin_url, class: "btn btn-primary" %>
+            <%= button_to "Sign in", signin_url, method: :get, class: "btn btn-primary" %>
           </div>
         <% end %>
         </div>

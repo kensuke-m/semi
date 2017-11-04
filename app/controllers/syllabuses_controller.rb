@@ -1,10 +1,18 @@
 class SyllabusesController < ApplicationController
   before_action :set_syllabus, only: [:show, :edit, :update, :destroy]
+  before_action :admin, only: [:new, :create, :destroy]
 
   # GET /syllabuses
   # GET /syllabuses.json
   def index
-    @syllabuses = Syllabus.all
+    if User::admin?(session[:user_name])
+      @syllabuses = Syllabus.all
+    else
+      if session[:staff_id]
+        @syllabuses = Syllabus.where(staff_id: session[:staff_id])
+      else
+      end
+    end
   end
 
   # GET /syllabuses/1

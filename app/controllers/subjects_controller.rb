@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  before_action :admin
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
   # GET /subjects

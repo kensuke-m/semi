@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+  before_action :admin
   before_action :set_charge, only: [:show, :edit, :update, :destroy]
 
   # GET /charges

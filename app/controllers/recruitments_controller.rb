@@ -1,4 +1,5 @@
 class RecruitmentsController < ApplicationController
+  before_action :admin
   before_action :set_recruitment, only: [:show, :edit, :update, :destroy]
 
   # GET /recruitments

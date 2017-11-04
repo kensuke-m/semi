@@ -8,8 +8,15 @@ class ApplicationController < ActionController::Base
   protected
 
   def authorize
-    unless User.find_by(id: session[:user_id])
+    unless session[:user_name]
       redirect_to signin_url
+    end
+  end
+
+  def admin
+    authorize
+    unless User::admin?(session[:user_name])
+      redirect_to top_index_url
     end
   end
 end
