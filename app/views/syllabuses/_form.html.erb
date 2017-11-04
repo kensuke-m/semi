@@ -1,0 +1,61 @@
+<%= form_for(@syllabus) do |f| %>
+  <% if @syllabus.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h2><%= pluralize(@syllabus.errors.count, "error") %> prohibited this syllabus from being saved:</h2>
+
+      <ul>
+      <% @syllabus.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :staff_id %><br>
+    <%= f.collection_select :staff_id, Staff.order(:kana), :id, :lastname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :subject_id %><br>
+    <%= f.collection_select :subject_id, Subject.all, :id, :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :subtitle %><br>
+    <%= f.text_area :subtitle, class: "form-control", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :goal %><br>
+    <%= f.text_area :goal, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :abstract %><br>
+    <%= f.text_area :abstract, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :plan %><br>
+    <%= f.text_area :plan, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :evaluationmethod %><br>
+    <%= f.text_area :evaluationmethod, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :textbook %><br>
+    <%= f.text_area :textbook, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :referencebook %><br>
+    <%= f.text_area :referencebook, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :selectionmethod %><br>
+    <%= f.text_area :selectionmethod, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :remarks %><br>
+    <%= f.text_area :remarks, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-default" %>
+  </div>
+<% end %>

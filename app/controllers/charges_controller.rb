@@ -37,6 +37,17 @@ class ChargesController < ApplicationController
       end
     end
 
+    if not Syllabus.where(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]).exists?
+      syllabus = Syllabus.new(staff_id: charge_params[:staff_id], subject_id: charge_params[:subject_id]);
+      if !syllabus.save
+        errors.add(:base, 'Syllabus was not created')
+        respond_to do |format|
+          format.html { render :new }
+          format.json { render json: @charge.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     respond_to do |format|
       if @charge.save
         format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
@@ -69,6 +80,12 @@ class ChargesController < ApplicationController
       recruitment = Recruitment.find(staff_id: @charge.staff_id, subject_id: @charge.subject_id);
       recruitment.destroy
     end
+
+    if Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id).exists?
+      syllabus = Syllabus.find(staff_id: @charge.staff_id, subject_id: @charge.subject_id);
+      syllabus.destroy
+    end
+
     @charge.destroy
     respond_to do |format|
       format.html { redirect_to charges_url, notice: 'Charge was successfully destroyed.' }

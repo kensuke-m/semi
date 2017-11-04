@@ -211,6 +211,7 @@ ja:
       staff: 教員
       charge: 担当
       recruitment: 募集
+      syllabus: シラバス
     attributes:
       subject:
         name: 科目名
@@ -229,6 +230,18 @@ ja:
       recruitment:
         staff_id: 教員
         subject_id: 科目
+      syllabus:
+        staff_id: 担当教員
+        subject_id: 科目
+        subtitle: 副題
+        goal: 到達目標
+        abstract: 概要
+        plan: 授業計画
+        evaluationmethod: 評価方法
+        textbook: 教科書
+        referencebook: 参考書
+        selectionmethod: 選抜方法
+        remarks: 備考
 
   new: 新規作成
   show: 詳細

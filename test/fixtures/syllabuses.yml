@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: 
+  subject_id: 
+  subtitle: MyText
+  goal: MyText
+  abstract: MyText
+  plan: MyText
+  evaluationmethod: MyText
+  textbook: MyText
+  referencebook: MyText
+  selectionmethod: MyText
+  remarks: MyText
+
+two:
+  staff_id: 
+  subject_id: 
+  subtitle: MyText
+  goal: MyText
+  abstract: MyText
+  plan: MyText
+  evaluationmethod: MyText
+  textbook: MyText
+  referencebook: MyText
+  selectionmethod: MyText
+  remarks: MyText
