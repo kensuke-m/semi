@@ -8,6 +8,11 @@
 
 User.create(name: 'admin', password_digest: BCrypt::Password.create('iyahaya')) # YOU SHOULD CHANGE THE PASSWORD
 
+Subject.create(name: '基礎演習II')
+Subject.create(name: '演習I')
+Subject.create(name: '演習II')
+Subject.create(name: '演習III')
+
 Course.create(name: '現代社会')
 Course.create(name: '国際社会')
 Course.create(name: '情報システム')
