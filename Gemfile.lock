@@ -105,6 +105,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.1)
     mysql2 (0.4.9)
+    net-ldap (0.16.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
+  net-ldap
   rails (= 4.2.5)
   rails-i18n
   redcarpet

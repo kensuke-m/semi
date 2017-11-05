@@ -48,6 +48,9 @@ gem 'roo', '~> 2.7.1'
 # Use RedCarpet as the Markdown renderer
 gem 'redcarpet'
 
+# Use Net-LDAP to user authentication
+gem 'net-ldap'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

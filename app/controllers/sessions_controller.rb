@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         staff = Staff::find_by_username(user.name)
         session[:staff_id] = staff.id
         session[:staff_lastname] = staff.lastname
-        notice = "#{t(:welcome)} #{staff.lastname} 先生"
+        notice = "#{t(:welcome)} #{staff.lastname}先生"
       end
       redirect_to top_index_url, notice: notice
     else

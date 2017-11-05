@@ -27,5 +27,5 @@ en:
   sure: Are you sure?
   back: Back
   signout: Sign out
-  upmismatch: Username/Password mismatch
+  upmismatch: Username/password mismatch or specified username has no admission
   welcome: Welcome 
