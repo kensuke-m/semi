@@ -212,6 +212,7 @@ ja:
       recruitment: 募集
       syllabus: シラバス
       user: ユーザ
+      announcement: お知らせ
     attributes:
       subject:
         name: 科目名
@@ -245,6 +246,9 @@ ja:
       user:
         name: ユーザ名
         password_digest: パスワード
+      announcement:
+        contents: お知らせ内容
+        displayflag: 表示する場面
 
   new: 新規作成
   show: 詳細

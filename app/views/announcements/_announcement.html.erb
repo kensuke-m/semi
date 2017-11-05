@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <th>Contents</th>
+        <td><%= announcement.contents %></td>
+      </tr>
+      <tr>
+        <th>Displayflag</th>
+        <td><%= announcement.displayflag %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
+          <%= link_to t(:edit), edit_announcement_path(announcement) %> |
+          <%= link_to t(:destroy), announcement, method: :delete, data: { confirm: t(:sure) } %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

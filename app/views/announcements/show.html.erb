@@ -1,0 +1,9 @@
+<% if notice %>
+  <div class="alert alert-info" role="alert">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<%= render(@announcement) %>
+
+<%= link_to t(:back), announcements_path %>

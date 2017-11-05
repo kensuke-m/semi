@@ -1,0 +1,15 @@
+<% if notice %>
+  <div class="alert alert-info" role="alert">
+    <p id="notice"><%= notice %></p>
+  </div>
+<% end %>
+
+<div class="page-header">
+  <h1>お知らせ一覧</h1>
+</div>
+
+<%= render(@announcements) %>
+
+<p>
+  <%= link_to t(:new), new_announcement_path %>
+</p>

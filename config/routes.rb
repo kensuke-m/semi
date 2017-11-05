@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :announcements
   resources :users
   resources :syllabuses
   resources :recruitments
