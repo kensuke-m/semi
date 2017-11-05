@@ -2,6 +2,8 @@ class SyllabusesController < ApplicationController
   before_action :set_syllabus, only: [:show, :edit, :update, :destroy]
   before_action :admin, only: [:new, :create, :destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_syllabus
+
   # GET /syllabuses
   # GET /syllabuses.json
   def index
@@ -27,6 +29,9 @@ class SyllabusesController < ApplicationController
 
   # GET /syllabuses/1/edit
   def edit
+    if not User.admin?(session[:user_name]) and @syllabus.staff.username != session[:user_name]
+      redirect_to top_index_url, alert: '権限のないシラバスを編集しようとしました'
+    end
   end
 
   # POST /syllabuses
@@ -83,5 +88,10 @@ class SyllabusesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def syllabus_params
       params.require(:syllabus).permit(:staff_id, :subject_id, :subtitle, :goal, :abstract, :plan, :evaluationmethod, :textbook, :referencebook, :selectionmethod, :remarks)
+    end
+
+    def invalid_syllabus
+      logger.error "Attempt to access invalid syllabus #{params[:id]}"
+      redirect_to top_index_url, alert: "存在しないシラバスにアクセスしました"
     end
 end
