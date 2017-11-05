@@ -6,4 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: 'admin', password_digest: BCrypt::Password.create('iyahaya'))
+User.create(name: 'admin', password_digest: BCrypt::Password.create('iyahaya')) # YOU SHOULD CHANGE THE PASSWORD
+
+Course.create(name: '現代社会')
+Course.create(name: '国際社会')
+Course.create(name: '情報システム')
