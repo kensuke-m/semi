@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
     else
       # LDAP
       if staff?(name) #or student?(name)
-        ldap = Net::LDAP.new
-        ldap.host = 'auth1.kyoto-wu.ac.jp'
-        ldap.port = 389
-        ldap.auth { "uid=#{name},cn=users,dc=kyoto-wu,dc=ac,dc=jp", password }
+        ldap = Net::LDAP.new(host: 'auth1.kyoto-wu.ac.jp', port: 389, auth: {username: "uid=#{name},cn=users,dc=kyoto-wu,dc=ac,dc=jp", password: password, method: :simple})
+#        ldap.host = 'auth1.kyoto-wu.ac.jp'
+#        ldap.port = 389
+#        ldap.auth "uid=#{name},cn=users,dc=kyoto-wu,dc=ac,dc=jp", password
         if ldap.bind
           User.new(name: name)
         end
