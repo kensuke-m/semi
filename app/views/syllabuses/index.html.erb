@@ -60,58 +60,9 @@
 </p>
 <% else %>
   <% if session[:staff_id] %>
-  <div class="page-header">
-    <h1><%= session[:staff_lastname] %>先生のシラバス一覧</h1>
-  </div>
-
-  <% @syllabuses.each do |syllabus| %>
-    <h3><%= syllabus.subject.name %></h3>
-    <div class="table-responsive">
-      <table class="table table-striped table-hover">
-        <tbody>
-          <tr>
-            <th>副題</th>
-            <td><%= syllabus.subtitle %></td>
-          </tr>
-          <tr>
-            <th>到達目標</th>
-            <td><%= syllabus.goal %></td>            
-          </tr>
-          <tr>
-            <th>概要</th>            
-            <td><%= syllabus.abstract %></td>
-          </tr>
-          <tr>
-            <th>授業計画</th>
-            <td><%= syllabus.plan %></td>            
-          </tr>
-          <tr>
-            <th>評価方法</th>
-            <td><%= syllabus.evaluationmethod %></td>
-          </tr>
-          <tr>
-            <th>教科書</th>
-            <td><%= syllabus.textbook %></td>
-          </tr>
-          <tr>
-            <th>参考書</th>
-            <td><%= syllabus.referencebook %></td>
-          </tr>
-          <tr>
-            <th>選抜方法</th>
-            <td><%= syllabus.selectionmethod %></td>
-          </tr>
-          <tr>
-            <th>備考</th>
-            <td><%= syllabus.remarks %></td>
-          </tr>
-          <tr>
-            <th><%= link_to t(:edit), edit_syllabus_path(syllabus) %></th>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="page-header">
+      <h1><%= session[:staff_lastname] %>先生のシラバス一覧</h1>
     </div>
+    <%= render(@syllabuses) %>
   <% end %>
-<% end %>
 <% end %>

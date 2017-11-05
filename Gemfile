@@ -45,6 +45,9 @@ gem 'rails-i18n'
 gem 'iconv'
 gem 'roo', '~> 2.7.1'
 
+# Use RedCarpet as the Markdown renderer
+gem 'redcarpet'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

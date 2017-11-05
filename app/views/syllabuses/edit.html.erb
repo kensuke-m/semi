@@ -2,9 +2,11 @@
   <h1>シラバスの編集</h1>
 </div>
 
-<p>
-  csv形式またはods形式，xlsx形式のファイルをアップロードできます．
-  テンプレートはそれぞれ<a href="/syllabus-template.csv" class="link">syllabus-template.csv</a>，<a href="/syllabus-template.ods" class="link">syllabus-template.ods</a>，<a href="/syllabus-template.xlsx" class="link">syllabus-template.xlsx</a>にあります．
+<div class="bg-info">
+  <p>
+    csv形式またはods形式，xlsx形式のファイルをドラッグ＆ドロップで（またはボタンでファイルを選択して）アップロードできます．<br />
+    テンプレートはそれぞれ<a href="/syllabus-template.csv" class="link">syllabus-template.csv</a>，<a href="/syllabus-template.ods" class="link">syllabus-template.ods</a>，<a href="/syllabus-template.xlsx" class="link">syllabus-template.xlsx</a>にあります．
+  </p>
   <div class="form-inline">
     <div class="form-group">
       <%= form_tag import_syllabuses_path, multipart: true do %>
@@ -14,10 +16,10 @@
       <% end %>
     </div>
   </div>
-</p>
+</div>
 
 <%= render 'form' %>
 
 <p>
-  <%= link_to t(:back), syllabuses_path %>
+  <%= link_to "一覧へ戻る", syllabuses_path, class: "btn btn-default" %>
 </p>

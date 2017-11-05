@@ -4,7 +4,10 @@
   </div>
 <% end %>
 
-<div class="well">
+<% if User.admin?(session[:user_name]) %>
+  <p>
+    <%= link_to t(:edit), edit_syllabus_path(@syllabus) %> | <%= link_to t(:back), syllabuses_path %>
+  </p>
   <p>
     <strong>Staff:</strong>
     <%= @syllabus.staff.lastname %>
@@ -13,43 +16,6 @@
     <strong>Subject:</strong>
     <%= @syllabus.subject.name %>
   </p>
-  <p>
-    <strong>Subtitle:</strong>
-    <%= @syllabus.subtitle %>
-  </p>
-  <p>
-    <strong>Goal:</strong>
-    <%= @syllabus.goal %>
-  </p>
-  <p>
-    <strong>Abstract:</strong>
-    <%= @syllabus.abstract %>
-  </p>
-  <p>
-    <strong>Plan:</strong>
-    <%= @syllabus.plan %>
-  </p>
-  <p>
-    <strong>Evaluationmethod:</strong>
-    <%= @syllabus.evaluationmethod %>
-  </p>
-  <p>
-    <strong>Textbook:</strong>
-    <%= @syllabus.textbook %>
-  </p>
-  <p>
-    <strong>Referencebook:</strong>
-    <%= @syllabus.referencebook %>
-  </p>
-  <p>
-    <strong>Selectionmethod:</strong>
-    <%= @syllabus.selectionmethod %>
-  </p>
-  <p>
-    <strong>Remarks:</strong>
-    <%= @syllabus.remarks %>
-  </p>
-</div>
-
-<%= link_to t(:edit), edit_syllabus_path(@syllabus) %> |
-<%= link_to t(:back), syllabuses_path %>
+<% end %>
+<%= render(@syllabus) %>
+<%= link_to "一覧へ戻る", syllabuses_path, class: "btn btn-default" %>

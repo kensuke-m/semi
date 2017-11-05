@@ -146,6 +146,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
+    redcarpet (3.4.0)
     roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -216,6 +217,7 @@ DEPENDENCIES
   mysql2
   rails (= 4.2.5)
   rails-i18n
+  redcarpet
   roo (~> 2.7.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -227,4 +229,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
