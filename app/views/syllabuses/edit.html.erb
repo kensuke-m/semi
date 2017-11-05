@@ -2,23 +2,28 @@
   <h1>シラバスの編集</h1>
 </div>
 
-<div class="bg-info">
-  <p>
-    csv形式またはods形式，xlsx形式のファイルをドラッグ＆ドロップで（またはボタンでファイルを選択して）アップロードできます．<br />
-    テンプレートはそれぞれ<a href="/syllabus-template.csv" class="link">syllabus-template.csv</a>，<a href="/syllabus-template.ods" class="link">syllabus-template.ods</a>，<a href="/syllabus-template.xlsx" class="link">syllabus-template.xlsx</a>にあります．
-  </p>
-  <div class="form-inline">
-    <div class="form-group">
-      <%= form_tag import_syllabuses_path, multipart: true do %>
-        <%= file_field_tag :file, class: "form-control"  %>
-        <%= hidden_field_tag :id, @syllabus.id %>
-        <%= submit_tag t(:import), class: "btn btn-default" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
 <%= render 'form' %>
+
+<p class="bg-info">
+  <ul>
+    <li>
+      上記それぞれの項目の中では<a href="http://www.markdown.jp/syntax/" target="_blank" class="link">Markdown記法</a>が利用できます．
+    </li>
+    <li>
+      csv形式またはods形式，xlsx形式のファイルをドラッグ＆ドロップで（またはボタンでファイルを選択して）アップロードできます．<br />
+      テンプレートは<a href="/syllabus-template.csv" target="_blank" class="link">syllabus-template.csv</a>，<a href="/syllabus-template.ods" class="link">syllabus-template.ods</a>，<a href="/syllabus-template.xlsx" class="link">syllabus-template.xlsx</a>にあります．
+      <div class="form-inline">
+        <div class="form-group">
+          <%= form_tag import_syllabuses_path, multipart: true do %>
+            <%= file_field_tag :file, class: "form-control"  %>
+            <%= hidden_field_tag :id, @syllabus.id %>
+            <%= submit_tag t(:import), class: "btn btn-default" %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ul>
+</p>
 
 <p>
   <%= link_to "一覧へ戻る", syllabuses_path, class: "btn btn-default" %>
