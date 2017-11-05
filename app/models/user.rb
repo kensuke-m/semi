@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
         ldap = Net::LDAP.new
         ldap.host = 'auth1.kyoto-wu.ac.jp'
         ldap.port = 389
-        ldap.auth = { username: "uid=#{name},cn=users,dc=kyoto-wu,dc=ac,dc=jp", password: password, method: :simple }
+        ldap.auth(username: "uid=#{name},cn=users,dc=kyoto-wu,dc=ac,dc=jp", password: password, method: :simple)
         if ldap.bind
           User.new(name: name)
         end
