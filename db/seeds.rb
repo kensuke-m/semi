@@ -11,3 +11,9 @@ User.create(name: 'admin', password_digest: BCrypt::Password.create('iyahaya')) 
 Course.create(name: '現代社会')
 Course.create(name: '国際社会')
 Course.create(name: '情報システム')
+
+g = Course.find_by_name('現代社会')
+k = Course.find_by_name('国際社会')
+j = Course.find_by_name('情報システム')
+
+Staff.create(username: 'toritani', lastname: '鳥谷', firstname: '一生', kana: 'とりたにいっしょう', course: k)
