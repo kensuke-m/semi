@@ -4,8 +4,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authorize
+  before_action :arrange
 
   protected
+
+  def arrange
+    if session[:user_name]
+      @h = Hash.new
+      Subject.all.each do |subject|
+        a = Array.new
+        Recruitment.where(subject_id: subject.id).each do |recruitment|
+          a << Syllabus.find_by(staff_id: recruitment.staff.id, subject_id: subject.id).id
+        end
+        @h[subject.name] = a unless a.empty?
+      end
+    end
+  end
 
   def authorize
     unless session[:user_name]
