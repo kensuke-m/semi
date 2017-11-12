@@ -12,11 +12,13 @@ class ApplicationController < ActionController::Base
     if session[:user_name]
       @h = Hash.new
       Subject.all.each do |subject|
-        a = Array.new
-        Recruitment.where(subject_id: subject.id).each do |recruitment|
-          a << Syllabus.find_by(staff_id: recruitment.staff.id, subject_id: subject.id).id
+        if subject.name == "演習I" or (subject.name == "演習III" and User.grade(session[:user_name]) > 1)
+          a = Array.new
+          Recruitment.where(subject_id: subject.id).each do |recruitment|
+            a << Syllabus.find_by(staff_id: recruitment.staff.id, subject_id: subject.id).id
+          end
+          @h[subject.name] = a unless a.empty?
         end
-        @h[subject.name] = a unless a.empty?
       end
     end
   end

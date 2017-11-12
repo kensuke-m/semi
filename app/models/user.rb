@@ -31,4 +31,18 @@ class User < ActiveRecord::Base
   def self.student?(name)
     /^k[0-9]241/ =~ name
   end
+
+  def self.grade(name)
+    if self.student?(name)
+      e = name[1].to_i
+      y = Time.now.year % 10
+      if e > y
+        10 + y - e + 1
+      else
+        y - e + 1
+      end
+    else
+      4
+    end
+  end
 end

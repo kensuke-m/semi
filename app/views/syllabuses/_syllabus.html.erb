@@ -6,7 +6,12 @@
 <% end %>
 <div class="panel panel-default">
   <div class="panel-heading">担当教員</div>
-  <div class="panel-body"><%= syllabus.staff.lastname + syllabus.staff.firstname %>（<%= syllabus.staff.course.name %>専攻）</div>
+  <div class="panel-body">
+    <%= syllabus.staff.lastname + syllabus.staff.firstname %>
+    <% if syllabus.subject.name == "演習I" %>
+      （<%= syllabus.staff.course.name %>専攻）
+    <% end %>
+  </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">副題</div>
