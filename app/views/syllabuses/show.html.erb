@@ -18,4 +18,6 @@
   </p>
 <% end %>
 <%= render(@syllabus) %>
-<%= link_to "一覧へ戻る", syllabuses_path, class: "btn btn-default" %>
+<% if not User.student?(session[:user_name]) %>
+  <%= link_to "一覧へ戻る", syllabuses_path, class: "btn btn-default" %>
+<% end %>
