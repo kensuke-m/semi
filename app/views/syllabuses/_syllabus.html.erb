@@ -4,49 +4,43 @@
     <%= button_to t(:edit), edit_syllabus_path(syllabus), method: :get, class: "btn btn-default" %>
   </p>
 <% end %>
-<div class="table-responsive">
-  <table class="table table-striped table-hover">
-    <tbody>
-      <tr>
-        <th>担当教員</th>
-        <td><%= syllabus.staff.lastname + syllabus.staff.firstname %></td>
-      </tr>
-      <tr>
-        <th>副題</th>
-        <td><%= markdown(syllabus.subtitle).html_safe %></td>
-      </tr>
-      <tr>
-        <th>到達目標</th>
-        <td><%= markdown(syllabus.goal).html_safe %></td>
-        </tr>
-      <tr>
-        <th>概要</th>            
-        <td><%= markdown(syllabus.abstract).html_safe %></td>
-      </tr>
-      <tr>
-        <th>授業計画</th>
-        <td><%= markdown(syllabus.plan).html_safe %></td>            
-      </tr>
-      <tr>
-        <th>評価方法</th>
-        <td><%= markdown(syllabus.evaluationmethod).html_safe %></td>
-      </tr>
-      <tr>
-        <th>教科書</th>
-        <td><%= markdown(syllabus.textbook).html_safe %></td>
-      </tr>
-      <tr>
-        <th>参考書</th>
-        <td><%= markdown(syllabus.referencebook).html_safe %></td>
-      </tr>
-      <tr>
-        <th>選抜方法</th>
-        <td><%= markdown(syllabus.selectionmethod).html_safe %></td>
-      </tr>
-      <tr>
-        <th>備考</th>
-        <td><%= markdown(syllabus.remarks).html_safe %></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="panel panel-default">
+  <div class="panel-heading">担当教員</div>
+  <div class="panel-body"><%= syllabus.staff.lastname + syllabus.staff.firstname %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">副題</div>
+  <div class="panel-body"><%= markdown(syllabus.subtitle).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">到達目標</div>
+  <div class="panel-body"><%= markdown(syllabus.goal).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">概要</div>            
+  <div class="panel-body"><%= markdown(syllabus.abstract).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">授業計画</div>
+  <div class="panel-body"><%= markdown(syllabus.plan).html_safe %></div>            
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">評価方法</div>
+  <div class="panel-body"><%= markdown(syllabus.evaluationmethod).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">教科書</div>
+  <div class="panel-body"><%= markdown(syllabus.textbook).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">参考書</div>
+  <div class="panel-body"><%= markdown(syllabus.referencebook).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">選抜方法</div>
+  <div class="panel-body"><%= markdown(syllabus.selectionmethod).html_safe %></div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">備考</div>
+  <div class="panel-body"><%= markdown(syllabus.remarks).html_safe %></div>
 </div>
