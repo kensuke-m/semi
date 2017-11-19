@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+    session[:status] = File.read("#{Rails.root}/status.txt").to_i
+    Thread.current[:status] = session[:status]
   end
 
   def authorize
