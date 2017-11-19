@@ -216,6 +216,7 @@ ja:
     attributes:
       subject:
         name: 科目名
+        grade: 選択対象年次
       course:
         name: 専攻名
       staff:

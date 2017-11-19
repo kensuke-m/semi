@@ -5,8 +5,14 @@
 <% end %>
 
 <div class="well">
-  <strong>Name:</strong>
-  <%= @subject.name %>
+  <p>
+    <strong>Name:</strong>
+    <%= @subject.name %>
+  </p>
+  <p>
+    <strong>Grade:</strong>
+    <%= @subject.grade %>
+  </p>
 </div>
 
 <%= link_to t(:edit), edit_subject_path(@subject) %> |
