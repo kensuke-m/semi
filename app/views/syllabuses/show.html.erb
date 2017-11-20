@@ -1,9 +1,3 @@
-<% if notice %>
-  <div class="alert alert-info" role="alert">
-    <p id="notice"><%= notice %></p>
-  </div>
-<% end %>
-
 <% if User.admin?(session[:user_name]) %>
   <p>
     <%= link_to t(:edit), edit_syllabus_path(@syllabus) %> | <%= link_to t(:back), syllabuses_path %>
