@@ -213,6 +213,7 @@ ja:
       syllabus: シラバス
       user: ユーザ
       announcement: お知らせ
+      request: 配属希望
     attributes:
       subject:
         name: 科目名
@@ -250,6 +251,13 @@ ja:
       announcement:
         contents: お知らせ内容
         displayflag: 表示する場面
+      request:
+        subject_id: 科目
+        staff_id: 担当教員
+        studentusername: 学生ユーザ名
+        studentname: 学生氏名
+        reason: 希望理由
+        permission: 配属可否
 
   new: 新規作成
   show: 詳細

@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def fullname
+  def self.fullname
     Thread.current[:fullname]
   end
   

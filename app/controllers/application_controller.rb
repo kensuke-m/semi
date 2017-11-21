@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def not_found
     respond_to do |format|
-      format.html { redirect_to top_index_url }
+      format.html { redirect_to top_index_url and return}
       format.xml { head :not_found }
       format.any { head :not_found }
     end
@@ -34,18 +34,24 @@ class ApplicationController < ActionController::Base
 
   def arrange
     if session[:user_name]
-      @h = Hash.new
+      @syllabus_links = Hash.new
+      @request_counts = Hash.new
       Subject.all.each do |subject|
         if User.grade(session[:user_name]) >= subject.grade
           a = Array.new
-          Recruitment.where(subject_id: subject.id).each do |recruitment|
-            a << Syllabus.find_by(staff_id: recruitment.staff.id, subject_id: subject.id).id
+          b = Array.new
+          Staff.all.order(:kana).each do |staff|
+            if Charge.exists?(subject_id: subject.id, staff_id: staff.id)
+              a << Syllabus.find_by(subject_id: subject.id, staff_id: staff.id).id
+              b << Request.where('subject_id = ? and staff_id = ?', subject.id, staff.id).count
+            end
           end
-          @h[subject.name] = a unless a.empty?
+          @syllabus_links[subject.id] = a unless a.empty?
+          @request_counts[subject.id] = b unless b.empty?
         end
       end
     end
-    session[:status] = File.read("#{Rails.root}/status.txt").to_i
+    session[:status] = File.read("#{Rails.root}/config/status.txt").to_i
     Thread.current[:status] = session[:status]
   end
 

@@ -7,7 +7,7 @@ class SyllabusesController < ApplicationController
   # GET /syllabuses
   # GET /syllabuses.json
   def index
-    if User::admin?(session[:user_name])
+    if User.admin?(session[:user_name])
       @syllabuses = Syllabus.all
     else
       if session[:staff_id]
@@ -20,6 +20,9 @@ class SyllabusesController < ApplicationController
   # GET /syllabuses/1
   # GET /syllabuses/1.json
   def show
+    syllabus = Syllabus.find(params[:id])
+    @requestable = false
+    @requestable = true if (session[:status] == 3 or session[:status] == 5) and Recruitment.where('staff_id = ? and subject_id = ?', syllabus.staff_id, syllabus.subject_id).any? and User.student?(session[:user_name])
   end
 
   # GET /syllabuses/new
@@ -53,6 +56,9 @@ class SyllabusesController < ApplicationController
   # PATCH/PUT /syllabuses/1
   # PATCH/PUT /syllabuses/1.json
   def update
+    if not User.admin?(session[:user_name]) and @syllabus.staff.username != session[:user_name]
+      redirect_to top_index_url, alert: '権限のないシラバスを更新しようとしました'
+    end
     respond_to do |format|
       if @syllabus.update(syllabus_params)
         format.html { redirect_to @syllabus, notice: 'Syllabus was successfully updated.' }
@@ -67,6 +73,9 @@ class SyllabusesController < ApplicationController
   # DELETE /syllabuses/1
   # DELETE /syllabuses/1.json
   def destroy
+    if not User.admin?(session[:user_name]) and @syllabus.staff.username != session[:user_name]
+      redirect_to top_index_url, alert: '権限のないシラバスを削除しようとしました'
+    end
     @syllabus.destroy
     respond_to do |format|
       format.html { redirect_to syllabuses_url, notice: 'Syllabus was successfully destroyed.' }

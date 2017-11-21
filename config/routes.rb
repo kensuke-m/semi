@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :requests do
+    collection do
+      get :show_list
+    end
+  end
   resources :announcements
   resources :users
   resources :syllabuses

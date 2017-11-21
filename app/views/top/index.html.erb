@@ -2,6 +2,19 @@
     <h1>京都女子大学現代社会学部ゼミ配属希望調査サイト</h1>    
 </div>
 
+<div class="info">
+  <% case session[:status] %>
+    <% when 3 %>
+      ただいま第1次募集期間です．
+    <% when 4 %>
+      第1次結果発表までしばらくお待ちください．
+    <% when 5 %>
+      ただいま第2次募集期間です．
+    <% when 6 %>
+      第2次結果発表までしばらくお待ちください．
+  <% end %>
+</div>
+
 <% @announcements.each do |a| %>
   <% if visible?(a) %>
     <div class="info">
