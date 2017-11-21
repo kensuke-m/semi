@@ -21,12 +21,12 @@ class User < ActiveRecord::Base
                                         password: password,
                                         method: :simple } )
           if ldap.bind
-            ldap.search( base: 'dc=kyoto-wu,dc=ac,dc=jp',
-                         filter: Net::LDAP::Filter.eq("uid", name),
-                         attributes: ["description"],
-                         return_result: false ) do |entry|
-              fullname = entry[:description][0]
-            end
+#            ldap.search( base: 'dc=kyoto-wu,dc=ac,dc=jp',
+#                         filter: Net::LDAP::Filter.eq("uid", name),
+#                         attributes: ["description"],
+#                         return_result: false ) do |entry|
+#              fullname = entry[:description][0]
+#            end
             User.new(name: name)
           end
         end

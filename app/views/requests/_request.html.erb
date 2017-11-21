@@ -1,0 +1,46 @@
+<% if User.student?(session[:user_name]) %>
+  <h3><%= request.subject.name %></h3>
+
+  <% if (session[:status] == 3 or session[:status] == 5) and session[:user_name] == request.studentusername %>
+    <p>
+      <%= button_to t(:destroy), request, method: :delete, data: { confirm: t(:sure) }, class: "btn btn-danger" %>
+    </p>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">担当教員</div>
+    <div class="panel-body">
+      <%= link_to request.staff.lastname + request.staff.firstname, Syllabus.where("staff_id = ? and subject_id = ?", request.staff_id, request.subject_id).take, class: "link" %>
+      <% if request.subject.grade == 1 %>
+        （<%= request.staff.course.name %>専攻）
+      <% end %>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">希望理由</div>
+    <div class="panel-body">
+      <%= markdown(request.reason).html_safe %>
+      <% if (session[:status] == 3 or session[:status] == 5) and session[:user_name] == request.studentusername %>
+        <%= link_to t(:edit), edit_request_path(request), class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">配属可否</div>
+    <div class="panel-body">
+      <%= Request.permission_to_string(request.permission) %>
+    </div>
+  </div>
+<% else %>
+  <% if User.admin?(session[:user_name]) %>
+    <p><%= link_to t(:edit), edit_request_path(@request) %> | <%= link_to t(:back), requests_path %></p>
+    <p><strong>Subject:</strong><%= @request.subject.name %></p>
+    <p><strong>Staff:</strong><%= @request.staff.lastname %></p>
+    <p><strong>Studentusername:</strong><%= @request.studentusername %></p>
+    <p><strong>Studentname:</strong><%= @request.studentname %></p>
+    <p><strong>Reason:</strong><%= @request.reason %></p>
+    <p><strong>Permission:</strong><%= @request.permission %></p>
+  <% end %>
+<% end %>
