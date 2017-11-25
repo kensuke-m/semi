@@ -108,6 +108,9 @@
                   </tr>
                   <% i += 1 %>
                 <% end %>
+                <tr>
+                  <td>合計</td><td class="text-right"><%= link_to @request_counts[k].sum, show_list_requests_path(subject_id: k, staff_id: "*") %></td>
+                </tr>
               </tbody>
             </table>
           </div>
