@@ -6,17 +6,17 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
+        <th><%= sort_link "studentusername", "学生" %></th>
         <% if @staff_id == '*' %><th>ゼミ</th><% end %>
-        <th>学生</th>
         <% if User.staff?(session[:user_name]) %><th>希望理由</th><% end %>
-        <th>配属可否</th>
+        <th><%= sort_link "permission", "配属可否" %></th>
       </tr>
     </thead>
     <tbody>
       <% @requests.each do |r| %>
         <tr>
-          <% if @staff_id == '*' %><td><%= r.staff.lastname %></td><% end %>
           <td><%= r.studentusername %><%= r.studentname %></td>
+          <% if @staff_id == '*' %><td><%= r.staff.lastname %></td><% end %>
           <% if User.staff?(session[:user_name]) %><td><%= markdown(r.reason).html_safe %></td><% end %>
           <td><%= Request.permission_to_string(r.permission) %></td>
         </tr>

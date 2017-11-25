@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-
+  helper_method :sort_column, :sort_direction
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_request
 
   # GET /requests
@@ -109,9 +109,9 @@ class RequestsController < ApplicationController
   # Show the list of requests
   def show_list
     if params[:staff_id] == '*'
-      @requests = Request.where(subject_id: params[:subject_id])
+      @requests = Request.where(subject_id: params[:subject_id]).order("#{sort_column} #{sort_direction}")
     else
-      @requests = Request.where(subject_id: params[:subject_id], staff_id: params[:staff_id])
+      @requests = Request.where(subject_id: params[:subject_id], staff_id: params[:staff_id]).order("#{sort_column} #{sort_direction}")
     end
     @subject_id = params[:subject_id]
     @staff_id = params[:staff_id]
@@ -125,11 +125,23 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:subject_id, :staff_id, :studentusername, :studentname, :reason, :permission)
+      params.require(:request).permit(:subject_id, :staff_id, :studentusername, :studentname, :reason, :permission, :column, :direction)
     end
 
     def invalid_request
       logger.error "Attempt to access invalid request #{params[:id]}"
       redirect_to top_index_url, alert: "存在しない配属希望にアクセスしました"
+    end
+
+    def sortable_columns
+      ["subject", "staff", "studentusername", "permission"]
+    end
+
+    def sort_column
+      sortable_columns.include?(params[:column]) ? params[:column] : "id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
