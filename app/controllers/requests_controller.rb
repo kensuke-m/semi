@@ -46,7 +46,7 @@ class RequestsController < ApplicationController
     if not User.admin?(session[:user_name]) and @request.staff.username != session[:user_name] and @request.studentusername != session[:user_name]
       redirect_to top_index_url, alert: '権限のない配属希望を編集しようとしました'
     else
-      unless ((session[:status] == 3 or session[:status] == 5) and User.student?(session[:user_name])) or ((session[:status] == 4 or session[:status] == 6) and User.staff?(session[:user_name]))
+      unless User.admin?(session[:user_name]) or ((session[:status] == 3 or session[:status] == 5) and User.student?(session[:user_name])) or ((session[:status] == 4 or session[:status] == 6) and User.staff?(session[:user_name]))
         redirect_to top_index_url, alert: '今は配属希望を編集できません'
       end
     end
@@ -74,13 +74,14 @@ class RequestsController < ApplicationController
     if not User.admin?(session[:user_name]) and @request.staff.username != session[:user_name] and @request.studentusername != session[:user_name]
       redirect_to top_index_url, alert: '権限のない配属希望を更新しようとしました'
     else
-      unless ((session[:status] == 3 or session[:status] == 5) and User.student?(session[:user_name])) or ((session[:status] == 4 or session[:status] == 6) and User.staff?(session[:user_name]))
+      unless User.admin?(session[:user_name]) or ((session[:status] == 3 or session[:status] == 5) and User.student?(session[:user_name])) or ((session[:status] == 4 or session[:status] == 6) and User.staff?(session[:user_name]))
         redirect_to top_index_url, alert: '今は配属希望を更新できません'
       end
     end
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: "#{@request.studentusername}さんの#{@request.subject.name}の配属希望を更新しました．" }
+        format.js   { @request_updated = @request }
         format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit }

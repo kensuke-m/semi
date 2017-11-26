@@ -6,12 +6,45 @@ class Request < ActiveRecord::Base
   belongs_to :subject
   belongs_to :staff
 
-  def self.permission_to_string(permission)
-    if permission < 0
-    '未定'
+  def permission_values
+    [
+      [-1, "未定"],
+      [0, "配属可（第1次）"],
+      [1, "配属不可（第1次）"],
+      [2, "配属可（第2次）"],
+      [3, "配属不可（第2次）"]
+    ]
+  end
+
+  def self.permission_values_for_selection
+    if Thread.current[:status] == 4
+      [
+        ["未定", -1],
+        ["配属可（第1次）", 0],
+        ["配属不可（第1次）", 1],
+      ]
     else
-      p1 = permission % 2 ? '配属可' : '配属不可'
-      p1 + "（第#{permission / 2 + 1}次）"
+      [
+        ["未定", -1],
+        ["配属可（第1次）", 0],
+        ["配属不可（第1次）", 1],
+        ["配属可（第2次）", 2],
+        ["配属不可（第2次）", 3]
+      ]
     end
+  end
+
+  def permission_to_string
+    p1 = permission_values[self.permission + 1][1]
+    if not User.admin?(Thread.current[:user_name])
+      if Thread.current[:status] == 4 and User.student?(Thread.current[:user_name])
+        p1 = '未定'
+      else
+        if Thread.current[:status] == 6 and self.permission / 2 == 1 and User.student?(Thread.current[:user_name])
+          p1 = '未定'
+        end
+      end
+    end
+    p1
   end
 end

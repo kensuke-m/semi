@@ -1,0 +1,3 @@
+$("#current_permission_<%= @request_updated.id %>")
+  .html("<%= @request_updated.permission_to_string %>")
+  .css("color", "white").animate({color: "black"}, 500);

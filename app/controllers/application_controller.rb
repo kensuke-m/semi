@@ -53,6 +53,7 @@ class ApplicationController < ActionController::Base
     end
     session[:status] = File.read("#{Rails.root}/config/status.txt").to_i
     Thread.current[:status] = session[:status]
+    Thread.current[:user_name] = session[:user_name]
   end
 
   def authorize

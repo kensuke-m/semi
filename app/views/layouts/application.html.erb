@@ -51,8 +51,21 @@
           <% if User.staff?(session[:user_name]) %>
             <li><a href="/syllabuses">シラバス</a></li>
           <% end %>
-          <% if session[:user_name] %>
-            <li><a href="/requests">配属希望</a></li>
+          <% if User.staff?(session[:user_name]) or User.student?(session[:user_name]) %>
+            <% if User.student?(session[:user_name]) %>
+              <li><a href="/requests">配属希望</a></li>
+            <% else %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">配属希望<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <% staff = Staff.find_by(username: session[:user_name]) %>
+                  <% @syllabus_links.each do |k, v| %>
+                    <% subject = Subject.find(k) %>
+                    <li><%= link_to subject.name, show_list_requests_path(subject_id: subject.id, staff_id: staff.id) %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
             <% @syllabus_links.each do |k, v| %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= Subject.find(k).name %> <span class="caret"></span></a>
