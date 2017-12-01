@@ -33,7 +33,7 @@ gem 'unicorn'
 
 gem 'mysql2'                                                                                                                                                                                                       
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '3.9.1'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
