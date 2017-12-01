@@ -93,11 +93,15 @@ class RequestsController < ApplicationController
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
-    if not User.admin?(session[:user_name]) and @request.staff.username != session[:user_name] and @request.studentusername != session[:user_name]
-      redirect_to top_index_url, alert: '権限のない配属希望を削除しようとしました'
-    else
-      unless (session[:status] == 3 or session[:status] == 5) and User.student?(session[:user_name])
-        redirect_to top_index_url, alert: '今は配属希望を削除できません'
+    if not User.admin?(session[:user_name])
+      if @request.staff.username != session[:user_name] and @request.studentusername != session[:user_name]
+        redirect_to top_index_url, alert: '権限のない配属希望を削除しようとしました'
+        return
+      else
+        unless (session[:status] == 3 or session[:status] == 5) and User.student?(session[:user_name])
+          redirect_to requests_url, alert: '今は配属希望を削除できません'
+          return
+        end
       end
     end
     @request.destroy

@@ -25,7 +25,7 @@
             <td><%= request.studentusername %></td>
             <td><%= request.studentname %></td>
             <td><%= request.reason %></td>
-            <td><%= Request.permission_to_string(request.permission) %></td>
+            <td><%= request.permission_to_string %></td>
             <td><%= link_to t(:show), request %></td>
             <td><%= link_to t(:edit), edit_request_path(request) %></td>
             <td><%= link_to t(:destroy), request, method: :delete, data: { confirm: t(:sure) } %></td>
@@ -59,7 +59,7 @@
               <td><%= request.subject.name %></td>
               <td><%= request.studentusername %> <%= request.studentname %></td>
               <td><%= markdown(request.reason).html_safe %></td>
-              <td><%= Request.permission_to_string(request.permission) %></td>
+              <td><%= request.permission_to_string %></td>
             </tr>
           <% end %>
         </tbody>
