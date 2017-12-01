@@ -1,7 +1,7 @@
 <% if User.student?(session[:user_name]) %>
   <h3><%= request.subject.name %></h3>
 
-  <% if (session[:status] == 3 or session[:status] == 5) and session[:user_name] == request.studentusername %>
+  <% if (session[:status] == 3 or session[:status] == 5) and session[:user_name] == request.studentusername and not request.permission_to_string =~ /配属可/ %>
     <p>
       <%= button_to t(:destroy), request, method: :delete, data: { confirm: t(:sure) }, class: "btn btn-danger" %>
     </p>
@@ -21,7 +21,7 @@
     <div class="panel-heading">希望理由</div>
     <div class="panel-body">
       <%= markdown(request.reason).html_safe %>
-      <% if (session[:status] == 3 or session[:status] == 5) and session[:user_name] == request.studentusername %>
+      <% if (session[:status] == 3 or session[:status] == 5) and request.permission_to_string == '未定' and session[:user_name] == request.studentusername %>
         <%= link_to t(:edit), edit_request_path(request), class: "btn btn-default" %>
       <% end %>
     </div>

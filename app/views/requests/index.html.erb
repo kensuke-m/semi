@@ -70,7 +70,7 @@
       <div class="page-header">
         <h1><%= session[:user_name] %>さんの配属希望一覧</h1>
       </div>
-      <% if session[:status] == 3 %>
+      <% if session[:status] == 3 or session[:status] == 5 %>
         <ul>
           <li>配属希望の提出は各シラバスのページにあるボタンでお願いします</li>
           <li>配属希望先を変更したいときは提出済みのものを削除して新たに提出してください</li>

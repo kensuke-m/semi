@@ -66,7 +66,7 @@
                 </ul>
               </li>
             <% end %>
-            <% @syllabus_links.each do |k, v| %>
+            <% @syllabus_links_r.each do |k, v| %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= Subject.find(k).name %> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -116,7 +116,10 @@
                 <% v.each do |s| %>
                   <% sy = Syllabus.find(s) %>
                   <tr>
-                    <td><%= link_to sy.staff.lastname, sy %></td>
+                    <td>
+                      <%= link_to sy.staff.lastname, sy %>
+                      <% if @overflow[k][i] %><span class="label label-danger">満</span><% end %>
+                    </td>
                     <td class="text-right"><%= link_to @request_counts[k][i], show_list_requests_path(subject_id: k, staff_id: sy.staff_id)  %></td>
                   </tr>
                   <% i += 1 %>

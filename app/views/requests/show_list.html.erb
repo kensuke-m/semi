@@ -20,7 +20,7 @@
           <% if User.staff?(session[:user_name]) %><td><%= markdown(r.reason).html_safe %></td><% end %>
           <td>
             <span id="current_permission_<%= r.id %>"><%= r.permission_to_string %></span>
-            <% if session[:user_name] == r.staff.username and (session[:status] == 4 or session[:status] == 6) %>
+            <% if session[:user_name] == r.staff.username and (session[:status] == 4 or (session[:status] == 6 and not r.permission_to_string =~ /1/)) %>
               <br />
               <%= form_for(r, remote: true) do |f| %>
                 → <%= f.select :permission, Request.permission_values_for_selection, class: "form-control" %>

@@ -36,18 +36,30 @@ class ApplicationController < ActionController::Base
     if session[:user_name]
       @syllabus_links = Hash.new
       @request_counts = Hash.new
+      @syllabus_links_r = Hash.new
+      @overflow = Hash.new
       Subject.all.each do |subject|
         if User.grade(session[:user_name]) >= subject.grade
           a = Array.new
           b = Array.new
+          c = Array.new
+          d = Array.new
           Staff.all.order(:kana).each do |staff|
             if Charge.exists?(subject_id: subject.id, staff_id: staff.id)
               a << Syllabus.find_by(subject_id: subject.id, staff_id: staff.id).id
               b << Request.where('subject_id = ? and staff_id = ?', subject.id, staff.id).count
+              if Recruitment.exists?(subject_id: subject.id, staff_id: staff.id)
+                c << Syllabus.find_by(subject_id: subject.id, staff_id: staff.id).id
+                d << false
+              else
+                d << true
+              end
             end
           end
           @syllabus_links[subject.id] = a unless a.empty?
           @request_counts[subject.id] = b unless b.empty?
+          @syllabus_links_r[subject.id] = c unless c.empty?
+          @overflow[subject.id] = d unless d.empty?
         end
       end
     end
