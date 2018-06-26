@@ -71,9 +71,9 @@ class ChargesController < ApplicationController
       Recruitment.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id)[0].destroy
     end
 
-    if Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id).exists?
-      Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id)[0].destroy
-    end
+    #if Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id).exists?
+    #  Syllabus.where(staff_id: @charge.staff_id, subject_id: @charge.subject_id)[0].destroy
+    #end
 
     @charge.destroy
     respond_to do |format|
