@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def self.student?(name)
-    /^k[0-9]241/ =~ name
+    /^k[0-8]241/ =~ name || /^19241/ =~ name || /^2[0-9]241/ =~ name
   end
 
   def self.grade(name)
